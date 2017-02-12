@@ -1,4 +1,3 @@
-
 public abstract class Task {
 	private String name;
 	private int workingHours;
