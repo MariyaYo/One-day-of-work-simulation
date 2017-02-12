@@ -1,4 +1,5 @@
 
+
 public class AllWork {
 	private static final int SIZE_OF_TASK_ARRAY = 10;
 	private Task [] tasks;
@@ -27,14 +28,24 @@ public class AllWork {
 	}
 	
 	boolean isAllWorkDone(){
+		int a =0;
+		for(int i =0; i<tasks.length; i++){
+			if(tasks[i] != null){
+				a++;
+				//count for all full cells
+			}
+		}
 		for(int i = 0; i < tasks.length; i++){
 			if(tasks[i] != null){
 				if(tasks[i].getWorkingHours() == 0){
-					return true;
+					if(a ==1){
+						//if all cells have 0 working hours left only then all of the work is done
+						return true;
+					}
+					a--;
 				}
 			}
 		}
 		return false;
 	}
-
 }
