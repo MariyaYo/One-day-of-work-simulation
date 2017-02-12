@@ -1,4 +1,3 @@
-
 public class Employee {
 	
 	private String name;
@@ -6,18 +5,11 @@ public class Employee {
 	private int hoursLeft;
 	static AllWork allWork;
 	
-	AllWork allwork= new AllWork();
-	//i know this is wrong, but i don't get static variables
-	//i'll work on that, but not on this task...  
-	//i've been staring at this damn 3 rows for 6 hours now
-	//can't do this no more... 
-	
-	
 	Employee(String name){
 		setName(name);
 		this.hoursLeft = 8;
 		System.out.println(this.name + " started working on a new task.");
-		this.currentTask = allwork.getNextTask();
+		this.currentTask = allWork.getNextTask();
 	}
 	
 	void work(){
@@ -27,12 +19,14 @@ public class Employee {
 				this.currentTask.setWorkingHours(this.currentTask.getWorkingHours() - this.hoursLeft);
 				System.out.println(this.name + " couldn't finish his/her task. He/she will pick it up tomorrow");
 			}else{
-				this.currentTask.setWorkingHours(0);
 				this.hoursLeft -= this.currentTask.getWorkingHours();
-				if(!allWork.isAllWorkDone()){
-					System.out.println(this.name + " started working on a new task.");
-					this.currentTask = allwork.getNextTask();
-					this.work();
+				this.currentTask.setWorkingHours(0);
+				if(this.hoursLeft > 0){
+					if(!Employee.allWork.isAllWorkDone()){
+						System.out.println(this.name + " started working on a new task.");
+						this.currentTask = allWork.getNextTask();
+						this.work();
+					}
 				}
 			}
 		}
